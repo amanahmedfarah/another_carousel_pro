@@ -163,7 +163,7 @@ class AnotherCarouselState extends State<AnotherCarousel> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> listImages = widget.images.map<Widget>(
-      (netImage) {
+          (netImage) {
         if (netImage is ImageProvider) {
           return Container(
             decoration: BoxDecoration(
@@ -178,29 +178,29 @@ class AnotherCarouselState extends State<AnotherCarousel> {
             ),
             child: widget.overlayShadow
                 ? Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.center,
-                        stops: [0.0, widget.overlayShadowSize],
-                        colors: [
-                          widget.overlayShadowColors != null
-                              ? widget.overlayShadowColors!.withOpacity(1.0)
-                              : Colors.grey[800]!.withOpacity(1.0),
-                          widget.overlayShadowColors != null
-                              ? widget.overlayShadowColors!.withOpacity(0.0)
-                              : Colors.grey[800]!.withOpacity(0.0)
-                        ],
-                      ),
-                    ),
-                  )
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.center,
+                  stops: [0.0, widget.overlayShadowSize],
+                  colors: [
+                    widget.overlayShadowColors != null
+                        ? widget.overlayShadowColors!.withOpacity(1.0)
+                        : Colors.grey[800]!.withOpacity(1.0),
+                    widget.overlayShadowColors != null
+                        ? widget.overlayShadowColors!.withOpacity(0.0)
+                        : Colors.grey[800]!.withOpacity(0.0)
+                  ],
+                ),
+              ),
+            )
                 : Container(),
           );
         } else if (netImage is FadeInImage) {
           return ClipRRect(
             borderRadius: widget.borderRadius
                 ? BorderRadius.all(widget.radius ?? Radius.circular(8.0))
-                : null,
+                : BorderRadius.circular(8.0),
             child: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -273,11 +273,11 @@ class AnotherCarouselState extends State<AnotherCarousel> {
         ? widget.dotVerticalPadding
         : null;
     double? left = [DotPosition.topLeft, DotPosition.bottomLeft]
-            .contains(widget.dotPosition)
+        .contains(widget.dotPosition)
         ? widget.dotHorizontalPadding
         : null;
     double? right = [DotPosition.topRight, DotPosition.bottomRight]
-            .contains(widget.dotPosition)
+        .contains(widget.dotPosition)
         ? widget.dotHorizontalPadding
         : null;
 
@@ -316,46 +316,46 @@ class AnotherCarouselState extends State<AnotherCarousel> {
         ),
         widget.showIndicator
             ? Positioned(
-                bottom: bottom,
-                top: top,
-                left: left,
-                right: right,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: widget.dotBgColor == null
-                        ? Colors.grey[800]!.withOpacity(0.5)
-                        : widget.dotBgColor,
-                    borderRadius: widget.borderRadius
-                        ? (widget.noRadiusForIndicator
-                            ? null
-                            : BorderRadius.only(
-                                bottomLeft:
-                                    widget.radius ?? Radius.circular(8.0),
-                                bottomRight:
-                                    widget.radius ?? Radius.circular(8.0)))
-                        : null,
-                  ),
-                  padding: EdgeInsets.all(widget.indicatorBgPadding),
-                  child: Center(
-                    child: DotsIndicator(
-                      controller: _controller,
-                      itemCount: listImages.length,
-                      color: widget.dotColor,
-                      increasedColor: widget.dotIncreasedColor,
-                      dotSize: widget.dotSize,
-                      dotSpacing: widget.dotSpacing,
-                      dotIncreaseSize: widget.dotIncreaseSize,
-                      onPageSelected: (int page) {
-                        _controller.animateToPage(
-                          page,
-                          duration: widget.animationDuration,
-                          curve: widget.animationCurve,
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              )
+          bottom: bottom,
+          top: top,
+          left: left,
+          right: right,
+          child: Container(
+            decoration: BoxDecoration(
+              color: widget.dotBgColor == null
+                  ? Colors.grey[800]!.withOpacity(0.5)
+                  : widget.dotBgColor,
+              borderRadius: widget.borderRadius
+                  ? (widget.noRadiusForIndicator
+                  ? null
+                  : BorderRadius.only(
+                  bottomLeft:
+                  widget.radius ?? Radius.circular(8.0),
+                  bottomRight:
+                  widget.radius ?? Radius.circular(8.0)))
+                  : null,
+            ),
+            padding: EdgeInsets.all(widget.indicatorBgPadding),
+            child: Center(
+              child: DotsIndicator(
+                controller: _controller,
+                itemCount: listImages.length,
+                color: widget.dotColor,
+                increasedColor: widget.dotIncreasedColor,
+                dotSize: widget.dotSize,
+                dotSpacing: widget.dotSpacing,
+                dotIncreaseSize: widget.dotIncreaseSize,
+                onPageSelected: (int page) {
+                  _controller.animateToPage(
+                    page,
+                    duration: widget.animationDuration,
+                    curve: widget.animationCurve,
+                  );
+                },
+              ),
+            ),
+          ),
+        )
             : Container(),
       ],
     );
@@ -366,13 +366,13 @@ class AnotherCarouselState extends State<AnotherCarousel> {
 class DotsIndicator extends AnimatedWidget {
   DotsIndicator(
       {required this.controller,
-      this.itemCount,
-      this.onPageSelected,
-      this.color,
-      this.increasedColor,
-      this.dotSize,
-      this.dotIncreaseSize,
-      this.dotSpacing})
+        this.itemCount,
+        this.onPageSelected,
+        this.color,
+        this.increasedColor,
+        this.dotSize,
+        this.dotIncreaseSize,
+        this.dotSpacing})
       : super(listenable: controller);
 
   // The PageController that this DotsIndicator is representing.
